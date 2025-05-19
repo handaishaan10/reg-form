@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Byte.IT 2024 Registration</title>
+<style>
+body {
+    margin: 0;
+    font: 'Segoe UI';
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: #fff;
+}
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+img {
+    width: 100px;
+}
+h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+}
+.checkbox-group label {
+    font-weight: normal;
+    margin-top: 10px;
+}
+.checkbox-group input {
+    margin-right: 8px;
+}
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#submitbutton {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #fff;
+}
+#submitbutton:hover {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+}
+#downloadbutton {
+    background: linear-gradient(to right, #43e97b, #38f9d7);
+    color: #000;
+}
+#downloadbutton:hover {
+    background: linear-gradient(to right, #38f9d7, #43e97b);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<img src="logo.png">
+<h2>Byte.IT 2024 Registration</h2>
+<form id="dataform">
+    <label>Name of the School</label>
+    <input type="text" name="schoolName" required>
+
+    <label>Address of the School</label>
+    <input type="text" name="schoolAddress" required>
+
+    <label>Name of the Teacher-in-Charge</label>
+    <input type="text" name="teacherName" required>
+
+    <label>Mobile Number of the Teacher-in-Charge</label>
+    <input type="tel" name="teacherMobile" required>
+
+    <label>Email of the Teacher-in-Charge</label>
+    <input type="email" name="teacherEmail" required>
+
+    <label>Select the Events You Are Interested In:</label>
+    <div class="checkbox-group">
+    <label><input type="checkbox" name="events" value="Surprise.IT"> Surprise.IT</label>
+    <label><input type="checkbox" name="events" value="Snap.IT"> Snap.IT</label>
+    <label><input type="checkbox" name="events" value="Code.IT"> Code.IT</label>
+    <label><input type="checkbox" name="events" value="Pitch.IT"> Pitch.IT</label>
+    <label><input type="checkbox" name="events" value="Case.IT"> Case.IT</label>
+    <label><input type="checkbox" name="events" value="Innovation Fest"> Innovation Fest</label>
+    <label><input type="checkbox" name="events" value="Electro Art"> Electro Art</label>
+    <label><input type="checkbox" name="events" value="Gaming"> Gaming</label>
+    <label><input type="checkbox" name="events" value="Present.IT"> Present.IT</label>
+    <label><input type="checkbox" name="events" value="Make.IT"> Make.IT</label>
+    <label><input type="checkbox" name="events" value="Crypt.IT"> Crypt.IT</label>
+    <label><input type="checkbox" name="events" value="Film.IT"> Film.IT</label>
+    </div>
+
+    <button type="submit" id="submitbutton">Submit</button>
+    <button type="button" id="downloadbutton">Download All Entries CSV</button>
+</form>
+</div>
+
+<script>
+const form = document.getElementById("dataform");
+const csvdata = [
+    ["School Name", "School Address", "Teacher Name", "Teacher Mobile", "Teacher Email", "Events"]
+];
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formdata = new FormData(form);
+    const selectedevents = [];
+    form.querySelectorAll('input[name="events"]:checked').forEach(cb => selectedevents.push(cb.value));
+
+    const row = [
+    formdata.get('schoolName'),
+    formdata.get('schoolAddress'),
+    formdata.get('teacherName'),
+    formdata.get('teacherMobile'),
+    formdata.get('teacherEmail'),
+    selectedevents.join('; ')
+    ];
+
+    csvdata.push(row);
+    alert("Registration submitted successfully!");
+    form.reset();
+});
+
+document.getElementById("downloadbutton").addEventListener("click", function () {
+    let csvcontent = csvdata.map(e => e.map(v => `"${v.replace(/"/g, '""')}"`).join(",")).join("\n");
+    const boobsry = new Blob([csvcontent], { type: 'text/csv' });
+    const url = URL.createObjectURL(boobsry);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "ByteIT_2024_Registrations.csv");
+    link.click();
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
