@@ -4,70 +4,158 @@
 <style>
 body {
     margin: 0;
-    font: 'Segoe UI';
-    background: linear-gradient(to right, #1e3c72, #2a5298);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
     color: #fff;
 }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .container {
     max-width: 700px;
     margin: 50px auto;
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(120deg, rgb(132, 2, 207), rgb(0, 134, 187));
     padding: 30px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
 }
+
 img {
     width: 100px;
+    opacity: 0;
+    animation: zoomIn 1s ease forwards;
+    animation-delay: 0.3s;
+    display: block;
+    margin: 0 auto 20px auto;
 }
+
 h2 {
     text-align: center;
     font-size: 28px;
     margin-bottom: 30px;
     color: #ffffff;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
 }
+
 label {
     display: block;
-    margin-top: 15px;
+    margin-top: 30px;
     font-weight: 600;
     color: #ffffff;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
 }
+
 input[type="text"],
 input[type="tel"],
 input[type="email"] {
     width: 100%;
     padding: 10px;
-    margin-top: 6px;
+    margin-top: 10px;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
 }
+
+label:nth-of-type(1) { animation-delay: 0.8s; }
+input[name="schoolName"] { animation-delay: 1s; }
+label:nth-of-type(2) { animation-delay: 1.2s; }
+input[name="schoolAddress"] { animation-delay: 1.4s; }
+label:nth-of-type(3) { animation-delay: 1.6s; }
+input[name="teacherName"] { animation-delay: 1.8s; }
+label:nth-of-type(4) { animation-delay: 2s; }
+input[name="teacherMobile"] { animation-delay: 2.2s; }
+label:nth-of-type(5) { animation-delay: 2.4s; }
+input[name="teacherEmail"] { animation-delay: 2.6s; }
+label:nth-of-type(6) { animation-delay: 2.8s; }
+
+.checkbox-group {
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 3s;
+}
+
 .checkbox-group label {
     font-weight: normal;
-    margin-top: 10px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
 }
+
+.checkbox-group label:nth-child(1) { animation-delay: 3.1s; }
+.checkbox-group label:nth-child(2) { animation-delay: 3.2s; }
+.checkbox-group label:nth-child(3) { animation-delay: 3.3s; }
+.checkbox-group label:nth-child(4) { animation-delay: 3.4s; }
+.checkbox-group label:nth-child(5) { animation-delay: 3.5s; }
+.checkbox-group label:nth-child(6) { animation-delay: 3.6s; }
+.checkbox-group label:nth-child(7) { animation-delay: 3.7s; }
+.checkbox-group label:nth-child(8) { animation-delay: 3.8s; }
+.checkbox-group label:nth-child(9) { animation-delay: 3.9s; }
+.checkbox-group label:nth-child(10) { animation-delay: 4s; }
+.checkbox-group label:nth-child(11) { animation-delay: 4.1s; }
+.checkbox-group label:nth-child(12) { animation-delay: 4.2s; }
+
 .checkbox-group input {
-    margin-right: 8px;
+    margin-right: 10px;
 }
+
 button {
-    margin-top: 20px;
+    margin-top: 30px;
     width: 100%;
     padding: 12px;
     font-size: 16px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
 }
+
 #submitbutton {
     background: linear-gradient(to right, #00c6ff, #0072ff);
     color: #fff;
+    animation-delay: 4.4s;
 }
+
 #submitbutton:hover {
     background: linear-gradient(to right, #0072ff, #00c6ff);
 }
+
 #downloadbutton {
     background: linear-gradient(to right, #43e97b, #38f9d7);
     color: #000;
+    animation-delay: 4.6s;
 }
+
 #downloadbutton:hover {
     background: linear-gradient(to right, #38f9d7, #43e97b);
 }
@@ -75,7 +163,7 @@ button {
 </head>
 <body>
 <div class="container">
-<img src="logo.png">
+<img src="logo.png" alt="Byte.IT Logo">
 <h2>Byte.IT 2024 Registration</h2>
 <form id="dataform">
     <label>Name of the School</label>
